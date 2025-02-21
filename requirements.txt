@@ -1,0 +1,13 @@
+
+---
+
+### **3. requirements.txt**
+```plaintext
+numpy
+pandas
+matplotlib
+seaborn
+pymc3
+arima
+garch
+scikit-learn
