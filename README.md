@@ -1,81 +1,157 @@
+Brent Oil Prices Analysis and Dashboard
+Project Title: Brent Oil Prices Analysis and Change Point Detection
+Description:
+This project, part of the "10 Academy: Artificial Intelligence Mastery" Week 10 Challenge, conducts change point analysis and statistical modeling on Brent oil price time series data. The primary objective is to detect significant price changes and to associate these changes with global events such as political decisions, conflicts, economic sanctions, and OPEC policy shifts. This analysis provides actionable insights for investors, analysts, and policymakers navigating the volatile energy market.
 
-Brent Oil Price Analysis
-Overview
-This project examines the influence of major political, economic, and geopolitical events on Brent oil prices. By analyzing historical data from 1987 to 2022, the project aims to provide actionable insights for:
-Investors: Helping to inform portfolio strategies by understanding how external events impact oil prices.
-Policymakers: Offering data-driven insights that could guide energy policy and strategic planning.
-Energy Companies: Assisting in risk management and forecasting for market fluctuations.
-The analysis leverages statistical methods and visualizations to uncover trends and correlations between significant global events and oil price movements.
-Data
-Source: Historical Brent oil prices (1987–2022).
+Business Objectives
+
+Understand Global Impacts:
+Analyze how major events (political, economic, regulatory) affect Brent oil prices.
+
+
+Quantify Price Changes:
+Measure the extent to which these events drive price fluctuations.
+
+
+Inform Decision-Making:
+Deliver data-driven insights to guide investment strategies, policy development, and operational planning within the energy sector.
+
+
+Data Overview
+Dataset: Historical Brent oil prices.
+Time Period: May 20, 1987 to September 30, 2022.
 Fields: 
-oDate: The date of the recorded oil price.
-oPrice: The closing price of Brent crude oil on the given date.
-Location:
-The raw dataset is stored at data/raw/brent_oil_prices.csv.
-Additional data cleaning and preprocessing steps are applied to ensure the dataset’s consistency and reliability for analysis.
-Dependencies
-The project is built using Python. The following key packages are required:
-pandas: For data manipulation and cleaning.
-numpy: For numerical operations.
-matplotlib & seaborn: For data visualization.
-scikit-learn: For any modeling or statistical analysis, if applicable.
-Jupyter Notebook: For interactive analysis and presentation of results.
-Install all required packages using the following command:
-pip install -r requirements.txt
-Setup and Installation
+oDate: Recorded date of the oil price (format: day-month-year, e.g., 20-May-87).
+oPrice: Brent oil price in USD per barrel.
+
+Project Tasks
 1.
-Clone the repository:
+Defining the Data Analysis Workflow & Understanding the Model/Data
 2.
-git clone https://github.com/yourusername/brent-oil-price-analysis.git
-cd brent-oil-price-analysis
+oOutline steps from data collection and preprocessing to exploratory data analysis (EDA) and model evaluation.
+oReview and select appropriate time series models (e.g., ARIMA, VAR, Markov-Switching ARIMA, LSTM).
+oClarify model inputs, outputs, assumptions, and limitations.
+3.
+Time Series Analysis and Model Adaptation
+4.
+oApply time series analysis to the Brent oil dataset.
+oExperiment with multiple models to capture various market conditions.
+oIntegrate additional economic, technological, and regulatory indicators to refine analysis.
+5.
+Developing an Interactive Dashboard
+6.
+oBuild a dashboard using Flask (backend) and React (frontend) for interactive visualization.
+oProvide features such as dynamic charts, filters, and date-range selection.
+oVisualize historical trends, forecasting results, and correlations with key events.
+
+Project Structure
+brent-oil-analysis/
+├── backend/              # Flask backend for APIs and analysis logic
+│   ├── app.py            # Main application file with API endpoints
+│   ├── analysis.py       # Data analysis and forecasting functions
+│   ├── models.py         # Time series models (e.g., ARIMA)
+│   ├── utils.py          # Utility functions (e.g., data loading)
+│   ├── requirements.txt  # Python dependencies
+│   └── README.md         # Backend-specific documentation
+├── frontend/             # React frontend for the interactive dashboard
+│   ├── package.json      # NPM package configuration
+│   ├── public/           # Public assets (e.g., index.html)
+│   ├── src/              # Source code (React components, services)
+│   │   ├── index.js      # App entry point
+│   │   ├── App.js        # Main React component
+│   │   ├── components/   # UI components (Dashboard, ChartComponent, etc.)
+│   │   └── services/     # API services for backend communication
+│   └── README.md         # Frontend-specific documentation
+├── data/                 # Data files
+│   └── brent_oil_prices.csv  # Historical Brent oil prices dataset
+├── notebooks/            # Jupyter notebooks for exploratory analysis
+│   └── exploratory_analysis.ipynb  # EDA notebook
+└── README.md             # Project overview and instructions (this file)
+
+Setup Instructions
+1. Backend Setup
+1.
+Navigate to the backend directory:
+2.
+cd backend
 3.
 4.
-Create a virtual environment (optional but recommended):
+Create a virtual environment and activate it:
 5.
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+source venv/bin/activate  # For Windows: venv\Scripts\activate
 6.
 7.
-Install the dependencies:
+Install dependencies:
 8.
 pip install -r requirements.txt
 9.
 10.
-Data Preparation: Ensure the historical Brent oil price dataset is placed in the data/raw/ directory as brent_oil_prices.csv.
+Run the Flask application:
 11.
-Project Structure
-brent-oil-price-analysis/
-├── data/
-│   ├── raw/
-│   │   └── brent_oil_prices.csv
-│   └── processed/
-├── notebooks/
-│   └── analysis.ipynb      # Jupyter Notebook with exploratory analysis and visualizations
-├── scripts/
-│   └── data_cleaning.py    # Scripts for data cleaning and preprocessing
-├── requirements.txt
-├── README.md
-└── LICENSE
-How to Run the Analysis
+python app.py
+12.
+The API will run on http://localhost:5000.
+13.
+2. Frontend Setup
+1.
+Navigate to the frontend directory:
+2.
+cd frontend
+3.
+4.
+Install dependencies:
+5.
+npm install
+6.
+7.
+Start the development server:
+8.
+npm start
+9.
+The dashboard will be accessible at http://localhost:3000.
+10.
+3. Data Preparation
+Place the brent_oil_prices.csv file in the data/ directory.
+Ensure the CSV file includes at least the Date and Price columns in the specified formats.
+4. Exploratory Analysis
+Open the notebooks/exploratory_analysis.ipynb notebook to perform additional data exploration and prototyping.
+
+Usage
 
-Jupyter Notebook: Start the Jupyter Notebook server to explore the analysis interactively:
+Dashboard Exploration:
+Use the React dashboard to view summary statistics and model forecasts (ARIMA) interactively.
 
-jupyter notebook notebooks/analysis.ipynb
+
+API Endpoints:
+The Flask backend provides endpoints (e.g., /api/summary and /api/forecast) that serve data for analysis and visualization.
 
 
-Python Scripts: Run the data cleaning or analysis scripts directly from the command line, for example:
+Extensibility:
+Enhance the project by integrating additional models (e.g., VAR, GARCH, LSTM) and incorporating more diverse data sources.
 
-python scripts/data_cleaning.py
+
+Future Enhancements
 
-Analysis and Results
-The analysis includes:
-Exploratory Data Analysis (EDA):
-Visualization of trends, seasonality, and volatility in oil prices.
-Event Impact Analysis:
-Identification of significant political, economic, and geopolitical events and their correlation with abrupt price changes.
-Forecasting Models (if applicable):
-Time series forecasting to predict future oil price movements based on historical trends.
-Visual outputs and key insights are documented in the analysis notebook, with discussions on potential implications for different stakeholders.
-Conclusion
-This project provides a comprehensive analysis of Brent oil price trends, emphasizing the impact of global events on market dynamics. The insights generated aim to support decision-making processes for investors, policymakers, and energy companies. Future work may include incorporating more granular event data or exploring advanced predictive modeling techniques.
+Advanced Models:
+Implement further econometric and machine learning models for improved forecasting accuracy.
+
+
+Expanded Data Sources:
+Integrate economic indicators, technological advancements, and regulatory data for deeper analysis.
+
+
+Enhanced Dashboard Features:
+Add interactive filters, real-time updates, and detailed event analysis visualizations.
+
+
+Contributing
+Contributions to improve models, visualizations, or the overall functionality are welcome. Please open an issue or submit a pull request for enhancements or bug fixes.
+
+License
+
+Contact
+For further inquiries or collaboration opportunities, please contact:
+Mesfins973@gmail.com
+
+This project was developed as part of the "10 Academy: Artificial Intelligence Mastery" program's Week 10 Challenge, aiming to deliver robust, data-driven insights into the dynamics of Brent oil prices and their relation to global events.
