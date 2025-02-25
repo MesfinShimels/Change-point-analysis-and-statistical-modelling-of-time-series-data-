@@ -2,7 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 function ChartComponent({ forecast }) {
-  // Convert the forecast object into an array format for the chart.
+  // Convert forecast object into an array suitable for the chart.
   const data = Object.keys(forecast).map(date => ({
     date,
     forecast: forecast[date]

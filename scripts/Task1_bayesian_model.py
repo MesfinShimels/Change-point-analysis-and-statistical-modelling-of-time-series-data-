@@ -16,3 +16,21 @@ def build_bayesian_model(prices):
         # Inference
         trace = pm.sample(1000, return_inferencedata=False)
     return trace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

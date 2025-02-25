@@ -1,6 +1,7 @@
 import React from 'react';
 import Dashboard from './components/Dashboard';
 
+// Main App component for the dashboard.
 function App() {
   return (
     <div className="App">

@@ -5,17 +5,23 @@ import ChartComponent from './ChartComponent';
 function Dashboard() {
   const [summary, setSummary] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [metrics, setMetrics] = useState(null);
 
   useEffect(() => {
-    // Fetch summary data from the backend
+    // Fetch summary statistics
     axios.get('http://localhost:5000/api/summary')
       .then(response => setSummary(response.data))
       .catch(error => console.error("Error fetching summary:", error));
 
-    // Fetch forecast data from the backend
+    // Fetch ARIMA forecast data
     axios.get('http://localhost:5000/api/forecast')
       .then(response => setForecast(response.data))
       .catch(error => console.error("Error fetching forecast:", error));
+
+    // Fetch training evaluation metrics
+    axios.get('http://localhost:5000/api/train')
+      .then(response => setMetrics(response.data))
+      .catch(error => console.error("Error fetching training metrics:", error));
   }, []);
 
   return (
@@ -39,6 +45,16 @@ function Dashboard() {
         <ChartComponent forecast={forecast} />
       ) : (
         <p>Loading forecast data...</p>
+      )}
+
+      <h2>Model Evaluation Metrics</h2>
+      {metrics ? (
+        <ul>
+          <li>MAE: {metrics.MAE.toFixed(2)}</li>
+          <li>RMSE: {metrics.RMSE.toFixed(2)}</li>
+        </ul>
+      ) : (
+        <p>Loading evaluation metrics...</p>
       )}
     </div>
   );

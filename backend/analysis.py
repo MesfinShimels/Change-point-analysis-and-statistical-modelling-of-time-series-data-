@@ -1,13 +1,16 @@
-import pandas as pd
-from models import arima_model
-from utils import load_data
+from data_preparation import load_and_clean_data
+from feature_engineering import add_features
+from models import train_and_forecast
 
 def get_summary_statistics():
     """
-    Loads the oil price data and computes basic summary statistics.
-    Returns a dictionary with mean, median, standard deviation, etc.
+    Loads, cleans, and enriches the oil price data then computes summary statistics.
+    
+    Returns:
+        stats: A dictionary with mean, median, standard deviation, minimum, maximum, and record count.
     """
-    df = load_data()
+    df = load_and_clean_data()
+    df = add_features(df)
     stats = {
         "mean": df['Price'].mean(),
         "median": df['Price'].median(),
@@ -20,9 +23,12 @@ def get_summary_statistics():
 
 def run_arima_forecast():
     """
-    Loads the oil price data and applies an ARIMA model forecast.
-    Returns forecasted values as a dictionary.
+    Loads, cleans, and enriches the oil price data then runs an ARIMA forecast.
+    
+    Returns:
+        forecast_values: Forecasted values as a dictionary.
     """
-    df = load_data()
-    forecast_values = arima_model(df)
+    df = load_and_clean_data()
+    df = add_features(df)
+    forecast_values = train_and_forecast(df, order=(1, 1, 1), forecast_steps=10)
     return forecast_values
