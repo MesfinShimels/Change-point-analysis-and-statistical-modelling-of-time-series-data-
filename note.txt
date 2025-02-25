@@ -1,0 +1,76 @@
+
+---
+
+## Jupyter Notebook for Exploratory Analysis
+
+### `notebooks/exploratory_analysis.ipynb`
+
+Below is a sample notebook in JSON format. You can open it with Jupyter Notebook to perform further exploratory data analysis (EDA):
+
+```json
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Exploratory Analysis of Brent Oil Prices\n",
+    "\n",
+    "This notebook is used for preliminary data exploration, including data cleaning, feature engineering, and visualization of trends and change points."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "# Load data\n",
+    "df = pd.read_csv('../data/brent_oil_prices.csv')\n",
+    "df['Date'] = pd.to_datetime(df['Date'], format='%d-%b-%y', errors='coerce')\n",
+    "df = df.dropna(subset=['Date', 'Price']).sort_values('Date')\n",
+    "\n",
+    "# Display basic info\n",
+    "print(df.head())\n",
+    "print(df.describe())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Plot the time series\n",
+    "plt.figure(figsize=(12, 6))\n",
+    "plt.plot(df['Date'], df['Price'], label='Brent Oil Price')\n",
+    "plt.xlabel('Date')\n",
+    "plt.ylabel('Price (USD per barrel)')\n",
+    "plt.title('Historical Brent Oil Prices')\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "name": "python",
+   "version": "3.x"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
+
+
+Backend Code: Contains full implementations for data preparation, feature engineering, ARIMA modeling, training, and evaluation.
+Frontend Code: Provides a complete React dashboard with API integration to display summary statistics, forecasts, and evaluation metrics.
+Notebook: Offers a starting point for EDA, enabling further exploration and visualization of the dataset.
